@@ -42,7 +42,12 @@
         <input formControlName="name" matInput placeholder="Ex. 4to Basica" />
       </mat-form-field>
       <div class="flex w-1/2 justify-between">
-        <button mat-raised-button color="warn" (click)="closeModal()">
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="closeModal()"
+        >
           Cancel
         </button>
         <button

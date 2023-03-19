@@ -1,10 +1,9 @@
 <div class="w-full h-[88vh]">
   <div class="flex h-1/6 items-center justify-between px-10">
     <div>
-      <h1 class="text-5xl font-semibold">Tercero A</h1>
+      <h1 class="text-5xl font-semibold">{{ this.grade.name }}</h1>
       <button
         (click)="removeGrade(this.id)"
-        routerLink="/"
         class="bg-red-500 text-white px-4 py-1"
       >
         Delete
@@ -37,23 +36,72 @@
   <div class="h-5/6 w-full px-10 py-5">
     <div class="flex justify-between items-center">
       <input
+        [value]="inputSearch"
+        (keyup)="searchValueChange($event)"
         type="text"
         class="w-5/6 py-2 px-4 bg-zinc-700 text-white placeholder:text-white font-semibold focus:outline-slate-700 shadow-lg rounded-md"
         placeholder="Busca un estudiante..."
       />
-      <button class="text-xl font-semibold px-4 py-2 bg-zinc-700 text-white">
+
+      <button
+        (click)="openModal()"
+        class="text-xl font-semibold px-4 py-2 bg-zinc-700 text-white"
+      >
         Add Student
       </button>
     </div>
     <div class="h-5/6 mt-5 overflow-y-scroll text-white font-semibold">
       <div
-        *ngFor="let student of students"
-        (click)="obtainOneStudent(student.id)"
+        *ngFor="let student of choosedStudents()"
+        (click)="obtainOneStudent(student.id!)"
         class="w-full h-[5vh] bg-zinc-700 flex items-center justify-between px-10 text-xl mt-5"
       >
         <span>{{ student.name }}</span>
-        <span>X</span>
+        <button
+          (click)="removeStudent(student.id!)"
+          type="button"
+          mat-raised-button
+          color="warn"
+        >
+          Remove
+        </button>
       </div>
     </div>
   </div>
+
+  <dialog
+    #modal
+    id="modal"
+    class="modal bg-gray-100 open:flex flex-col items-center justify-between rounded-xl w-1/3 h-1/4 font-semibold"
+  >
+    <h1 class="text-3xl">{{ operation }} a Student</h1>
+    <form
+      [formGroup]="form"
+      class="w-full flex flex-col items-center justify-around h-4/5"
+      (ngSubmit)="addOrEditStudent()"
+    >
+      <mat-form-field class="example-full-width">
+        <mat-label>Student Name</mat-label>
+        <input formControlName="name" matInput placeholder="Ex. 4to Basica" />
+      </mat-form-field>
+      <div class="flex w-1/2 justify-between">
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="closeModal()"
+        >
+          Cancel
+        </button>
+        <button
+          [disabled]="form.invalid"
+          type="submit"
+          mat-raised-button
+          color="primary"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </dialog>
 </div>
