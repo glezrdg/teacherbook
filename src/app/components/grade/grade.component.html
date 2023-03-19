@@ -1,0 +1,59 @@
+<div class="w-full h-[88vh]">
+  <div class="flex h-1/6 items-center justify-between px-10">
+    <h1 class="text-5xl font-semibold">ClassRooms</h1>
+    <div>
+      <button
+        (click)="openModal()"
+        class="text-xl font-semibold px-4 py-2 bg-slate-700 text-white"
+      >
+        Add a ClassRoom
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="h-4/6 grid grid-cols-4 grid-rows-[auto] gap-x-14 gap-y-0 place-items-center py-5 px-10"
+  >
+    <a
+      *ngFor="let grade of grades"
+      class="h-[20vh] w-full bg-zinc-200 rounded-md shadow-lg flex items-center justify-center hover:scale-105 transition-all select-none"
+      (click)="obtainOneGrade(grade.gradeId!)"
+      routerLink="grade/{{ grade.gradeId }}"
+    >
+      <h1 class="text-3xl font-semibold">{{ grade.name }}</h1>
+    </a>
+  </div>
+
+  <!-- Form -->
+
+  <dialog
+    #modal
+    id="modal"
+    class="modal bg-gray-100 open:flex flex-col items-center justify-between rounded-xl w-1/3 h-1/4 font-semibold"
+  >
+    <h1 class="text-3xl">Add a Grade</h1>
+    <form
+      [formGroup]="form"
+      class="w-full flex flex-col items-center justify-around h-4/5"
+      (ngSubmit)="addGrade()"
+    >
+      <mat-form-field class="example-full-width">
+        <mat-label>Classroom Name</mat-label>
+        <input formControlName="name" matInput placeholder="Ex. 4to Basica" />
+      </mat-form-field>
+      <div class="flex w-1/2 justify-between">
+        <button mat-raised-button color="warn" (click)="closeModal()">
+          Cancel
+        </button>
+        <button
+          [disabled]="form.invalid"
+          type="submit"
+          mat-raised-button
+          color="primary"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </dialog>
+</div>
