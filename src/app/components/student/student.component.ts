@@ -85,6 +85,9 @@ export class StudentComponent implements OnInit {
       });
     });
   }
+  log() {
+    console.log(this.id);
+  }
   obtainStudentByCourse() {
     this._studentService.getStudentByCourse(this.id).subscribe((data) => {
       this.students = data;

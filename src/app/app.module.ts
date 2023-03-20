@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { GradeComponent } from './components/grade/grade.component';
 import { StudentComponent } from './components/student/student.component';
 import { ClockComponent } from './components/clock/clock.component';
+import { ListComponent } from './components/list/list.component';
+import { SubjectComponent } from './components/subject/subject.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { ClockComponent } from './components/clock/clock.component';
     GradeComponent,
     StudentComponent,
     ClockComponent,
+    ListComponent,
+    SubjectComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
