@@ -13,6 +13,7 @@ import { StudentComponent } from './components/student/student.component';
 import { ClockComponent } from './components/clock/clock.component';
 import { ListComponent } from './components/list/list.component';
 import { SubjectComponent } from './components/subject/subject.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SubjectComponent } from './components/subject/subject.component';
     ClockComponent,
     ListComponent,
     SubjectComponent,
+    HeaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],

@@ -1,40 +1,5 @@
 <div class="w-full h-[88vh]">
-  <div class="flex h-1/6 items-center justify-between px-10">
-    <div>
-      <h1 class="text-5xl font-semibold">{{ this.grade.name }}</h1>
-      <button
-        (click)="removeGrade(this.id)"
-        class="bg-red-500 text-white px-4 py-1"
-      >
-        Delete
-      </button>
-    </div>
-
-    <div class="w-3/5 flex justify-evenly">
-      <a
-        class="text-xl font-semibold px-4 mt-3 py-2 bg-slate-700 text-white"
-        routerLink="subject"
-        (click)="log()"
-      >
-        Lengua Española
-      </a>
-      <button
-        class="text-xl font-semibold px-4 mt-3 py-2 bg-slate-700 text-white"
-      >
-        Matemáticas
-      </button>
-      <button
-        class="text-xl font-semibold px-4 mt-3 py-2 bg-slate-700 text-white"
-      >
-        Ciencias Sociales
-      </button>
-      <button
-        class="text-xl font-semibold px-4 mt-3 py-2 bg-slate-700 text-white"
-      >
-        Ciencias Naturales
-      </button>
-    </div>
-  </div>
+  <app-header [subject]="this.subject" (updatedSubject)="this.subject = $event"></app-header>
   <div class="h-5/6 w-full px-10 py-5">
     <div class="flex justify-between items-center">
       <input

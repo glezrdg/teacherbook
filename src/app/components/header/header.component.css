@@ -1,0 +1,9 @@
+.header_grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr fit-content;
+}
+
+.no-scroll::-webkit-scrollbar{
+  width: 0;
+  display: none;
+}

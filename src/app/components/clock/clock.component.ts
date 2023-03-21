@@ -22,14 +22,14 @@ export class ClockComponent {
   public ampm = '';
   public day = '';
 
-  ngOnInit() {
-    setInterval(() => {
-      const date = new Date();
-      this.updateDate(date);
-    }, 1000);
+  // ngOnInit() {
+  //   setInterval(() => {
+  //     const date = new Date();
+  //     this.updateDate(date);
+  //   }, 1000);
 
-    this.day = this.daysArray[this.date.getDay()];
-  }
+  //   this.day = this.daysArray[this.date.getDay()];
+  // }
   updateDate(date: Date) {
     const hours = date.getHours();
     this.ampm = hours >= 12 ? 'PM' : 'AM';

@@ -21,6 +21,7 @@ export class StudentComponent implements OnInit {
   studentId!: number;
   grade: Grade = { gradeId: 0, name: '', students: [] };
   inputSearch = '';
+  subject: string = ''
 
   constructor(
     private _studentService: StudentService,
@@ -58,7 +59,7 @@ export class StudentComponent implements OnInit {
     this.obtainStudentByCourse();
     this.obtainOneGrade(this.id);
   }
-  ngOnChanges() {}
+  ngOnChanges() { }
 
   openModal() {
     this.modal.nativeElement.showModal();
@@ -103,6 +104,7 @@ export class StudentComponent implements OnInit {
   obtainOneGrade(id: number) {
     this._gradeService.getOneGrade(id).subscribe((data) => {
       this.grade = data;
+      this.subject = this.grade.name
     });
   }
   addStudent(student: Student) {

@@ -1,50 +1,22 @@
 <div class="w-full h-[88vh]">
-  <div class="flex h-1/6 items-center justify-between px-10">
-    <div>
-      <h1 class="text-5xl font-semibold">Lengua Española</h1>
-      <button class="bg-red-500 text-white px-4 py-1">Delete</button>
-    </div>
+  
+  <app-header (updatedSubject)="updateSubject($event)" [subject]="this.subject"></app-header>
 
-    <div class="w-3/5 flex justify-evenly">
-      <button
-        class="text-xl font-semibold px-4 mt-3 py-2 bg-slate-700 text-white"
-      >
-        Lengua Española
-      </button>
-      <button
-        class="text-xl font-semibold px-4 mt-3 py-2 bg-slate-700 text-white"
-      >
-        Matemáticas
-      </button>
-      <button
-        class="text-xl font-semibold px-4 mt-3 py-2 bg-slate-700 text-white"
-      >
-        Ciencias Sociales
-      </button>
-      <button
-        class="text-xl font-semibold px-4 mt-3 py-2 bg-slate-700 text-white"
-      >
-        Ciencias Naturales
-      </button>
-    </div>
-  </div>
-  <div class="h-5/6 w-full px-10 py-5">
-    <div class="flex justify-between items-center">
-      <input
-        [value]="inputSearch"
-        (keyup)="searchValueChange($event)"
-        type="text"
-        class="w-5/6 py-2 px-4 bg-zinc-700 text-white placeholder:text-white font-semibold focus:outline-slate-700 shadow-lg rounded-md"
-        placeholder="Busca un estudiante..."
-      />
-    </div>
-    <div class="h-5/6 mt-5 overflow-y-scroll text-white font-semibold">
+  <div class="h-5/6 w-full px-10 no-scroll">    
+    <div class="h-5/6 overflow-y-scroll text-white font-semibold">
       <div
-        *ngFor="let student of choosedStudents()"
-        class="w-full h-[5vh] bg-zinc-700 flex items-center justify-between px-10 text-xl mt-5"
+        *ngFor="let student of students"        
+        class="w-full h-[5vh] bg-zinc-700  px-10 text-xl mt-5 flex justify-between items-center"
       >
         <span>{{ student.name }}</span>
+        <div  class="bg-slate-300 flex items-center text-black">
+          <div >
+            <input class="w-20 text-sm" [value]="student.calification?.value" (keyup)="changeCalification($event, student.calification)" />
+          <button class="btn bg-blue-600" (click)="updateCalification()">Update</button>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
