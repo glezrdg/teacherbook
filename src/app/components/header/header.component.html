@@ -1,42 +1,48 @@
 <div class="w-full place-items-center px-10 mt-4">
-  <div class="flex items-center justify-between mb-2">
+  <div class="flex items-center justify-between mb-10">
     <h1
-      class="text-2xl uppercase font-semibold"
+      class="text-4xl uppercase font-semibold select-none"
       [innerHTML]="this.subject"
     ></h1>
     <!-- <button class="bg-red-500 text-white px-4 py-1">Delete</button> -->
     <button
       *ngIf="this.selectedSubject"
+      mat-raised-button
+      color="primary"
       routerLink="list"
-      class="bg-green-400 rounded-lg w-[8rem] h-14"
+      class="px-4 py-2 shadow-lg boton"
     >
-      lista
+      Pasar Lista
     </button>
   </div>
 
-  <div class="w-full grid grid-cols-4">
+  <div class="w-full flex items-center justify-evenly cursor-pointer">
     <a
-      class="text-lg font-semibold px-4 py-2 bg-slate-700 text-white"
       (click)="changeValue('Lengua Española', 'Lengua Española')"
+      class="text-xl font-semibold px-4 w-1/5 py-2 bg-slate-700 text-white flex items-center justify-center hover:scale-105 transition-all hover:text-slate-700 hover:bg-white shadow-xl"
     >
+      <mat-icon fontIcon="library_books" class="mr-3 mt-1"></mat-icon>
       Lengua Española
     </a>
     <a
-      class="text-lg font-semibold px-4 py-2 bg-slate-700 text-white"
       (click)="changeValue('Matematicas', 'Matematicas')"
+      class="text-xl font-semibold px-4 w-1/5 py-2 bg-slate-700 text-white flex items-center justify-center hover:scale-105 transition-all hover:text-slate-700 hover:bg-white shadow-xl"
     >
+      <mat-icon fontIcon="calculate" class="mr-3 mt-1"></mat-icon>
       Matemáticas
     </a>
     <a
-      class="text-lg font-semibold px-4 py-2 bg-slate-700 text-white"
       (click)="changeValue('Ciencias Sociales', 'Ciencias Sociales')"
+      class="text-xl font-semibold px-4 w-1/5 py-2 bg-slate-700 text-white flex items-center justify-center hover:scale-105 transition-all hover:text-slate-700 hover:bg-white shadow-xl"
     >
+      <mat-icon fontIcon="psychology" class="mr-3 mt-1"></mat-icon>
       Ciencias Sociales
     </a>
     <a
-      class="text-lg font-semibold px-4 py-2 bg-slate-700 text-white"
       (click)="changeValue('Ciencias Naturales', 'Ciencias Naturales')"
+      class="text-xl font-semibold px-4 w-1/5 py-2 bg-slate-700 text-white flex items-center justify-center hover:scale-105 transition-all hover:text-slate-700 hover:bg-white shadow-xl"
     >
+      <mat-icon fontIcon="eco" class="mr-3 mt-1"></mat-icon>
       Ciencias Naturales
     </a>
   </div>

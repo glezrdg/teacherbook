@@ -5,18 +5,30 @@
   ></app-header>
   <div class="h-5/6 w-full px-10 py-5">
     <div class="flex justify-between items-center">
-      <input
+      <!-- <input
         [value]="inputSearch"
         (keyup)="searchValueChange($event)"
         type="text"
         class="w-5/6 py-2 px-4 bg-zinc-700 text-white placeholder:text-white font-semibold focus:outline-slate-700 shadow-lg rounded-md"
         placeholder="Busca un estudiante..."
-      />
+      /> -->
+      <mat-form-field class="w-5/6">
+        <mat-label
+          >Buscar Estudiante <mat-icon fontIcon="search"></mat-icon
+        ></mat-label>
 
+        <input
+          [value]="inputSearch"
+          (keyup)="searchValueChange($event)"
+          matInput
+          placeholder="Ex. Julian"
+        />
+      </mat-form-field>
       <button
         (click)="openModal()"
-        class="text-xl font-semibold px-4 py-2 bg-zinc-700 text-white"
+        class="text-xl font-semibold px-4 py-2 bg-slate-700 text-white flex items-center hover:scale-105 transition-all hover:text-slate-700 hover:bg-white shadow-xl"
       >
+        <mat-icon fontIcon="add" class="mr-3 mt-1"></mat-icon>
         Add Student
       </button>
     </div>
@@ -26,13 +38,17 @@
         (click)="obtainOneStudent(student.id!)"
         class="w-full h-[5vh] bg-zinc-700 flex items-center justify-between px-10 text-xl mt-5"
       >
-        <span>{{ student.name }}</span>
+        <span class="flex items-center"
+          ><mat-icon fontIcon="person" class="mr-2"></mat-icon>
+          {{ student.name }}</span
+        >
         <button
           (click)="removeStudent(student.id!)"
           type="button"
           mat-raised-button
           color="warn"
         >
+          <mat-icon fontIcon="delete" class="mr-2"></mat-icon>
           Remove
         </button>
       </div>
