@@ -19,6 +19,7 @@ export class SubjectComponent implements OnInit {
   subject: string = '';
   id: number;
   calificationLiteral = '';
+  studentTextR: any = 'mmg';
 
   constructor(
     private _studentService: StudentService,
@@ -33,9 +34,13 @@ export class SubjectComponent implements OnInit {
     this.obtainStudentByCourse();
   }
 
-  // ngOnChanges() {
-  //   this.obtainCalification();
-  // }
+  getStudentText(studentTextR: string) {
+    this.studentTextR = studentTextR;
+    console.log(this.studentTextR);
+  }
+  deunave() {
+    console.log(this.studentTextR);
+  }
 
   obtainStudentByCourse() {
     this._studentService.getStudentByCourse(this.id).subscribe((data) => {
@@ -64,8 +69,6 @@ export class SubjectComponent implements OnInit {
         .updateCalification(this.selectedStudent.id, this.selectedStudent.value)
         .subscribe((data) => {
           this.obtainStudentByCourse();
-          console.log(data, 'brr');
-          this.calcularLiteral(this.selectedStudent.value);
         });
     } catch (error) {
       console.log(error);

@@ -10,6 +10,18 @@
         class="w-full h-[5vh] bg-zinc-700 px-10 text-xl mt-5 flex justify-between items-center"
       >
         <span>{{ student.name }}</span>
+        <span
+          [ngStyle]="
+            student.present
+              ? { 'background-color': 'green' }
+              : student.present === false
+              ? { 'background-color': 'red' }
+              : { 'background-color': 'gray' }
+          "
+          class=""
+          >vino</span
+        >
+
         <div class="flex items-center text-black">
           <div class="flex">
             <button
@@ -33,17 +45,6 @@
       </div>
       <button (click)="addList()" class="bg-red-200 p-4">Save list</button>
       <form action="" [formGroup]="form">
-        <mat-form-field appearance="fill">
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker" />
-
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-
         <input
           type="date"
           id="start"
@@ -60,7 +61,7 @@
           mat-raised-button
           color="primary"
         >
-          Save
+          Search
         </button>
       </form>
     </div>

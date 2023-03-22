@@ -7,11 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  studentText: any;
   selectedSubject = '';
   anotherSubject = '';
+  id: number;
   @Input() subject: string = '';
   @Output() updatedSubject = new EventEmitter<string>();
-  id: number;
+  // @Output() studentTextOutput = new EventEmitter<any>();
 
   constructor(private aRoute: ActivatedRoute, private router: Router) {
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
@@ -20,8 +22,11 @@ export class HeaderComponent {
 
   changeValue(value: string, subject: string) {
     this.updatedSubject.emit(value);
-    this.router.navigate([`grade/${this.id}/${subject}`])
+    this.router.navigate([`grade/${this.id}/${subject}`]);
   }
+  // sendStudentText() {
+  //   this.studentTextOutput.emit(this.studentText);
+  // }
 
   ngOnInit() {
     this.selectedSubject = this.subject;

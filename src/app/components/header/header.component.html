@@ -17,7 +17,7 @@
   <div class="w-full grid grid-cols-4">
     <a
       class="text-lg font-semibold px-4 py-2 bg-slate-700 text-white"
-      (click)="changeValue('Lengua española', 'Lengua española')"
+      (click)="changeValue('Lengua Española', 'Lengua Española')"
     >
       Lengua Española
     </a>
@@ -41,10 +41,12 @@
     </a>
   </div>
   <div class="flex justify-between items-center w-full mt-1">
-    <input
+    <!-- <input
+      [(ngModel)]="studentText"
+      (keyup)="sendStudentText()"
       type="text"
       class="w-full py-2 px-4 bg-zinc-700 text-white placeholder:text-white font-semibold focus:outline-slate-700 shadow-lg rounded-md"
       placeholder="Busca un estudiante..."
-    />
+    /> -->
   </div>
 </div>

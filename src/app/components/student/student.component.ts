@@ -22,6 +22,7 @@ export class StudentComponent implements OnInit {
   grade: Grade = { gradeId: 0, name: '', students: [] };
   inputSearch = '';
   subject: string = '';
+  inputText: any;
 
   constructor(
     private _studentService: StudentService,
@@ -43,10 +44,12 @@ export class StudentComponent implements OnInit {
   searchValueChange(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.inputSearch = value;
-    console.log(this.inputSearch);
     this.filteredStudents = this.students.filter((p) =>
       p.name.toLowerCase().includes(this.inputSearch.toLocaleLowerCase())
     );
+  }
+  getStudentText(input: string) {
+    this.inputText = input;
   }
 
   choosedStudents() {
@@ -59,7 +62,9 @@ export class StudentComponent implements OnInit {
     this.obtainStudentByCourse();
     this.obtainOneGrade(this.id);
   }
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log(this.inputText);
+  }
 
   openModal() {
     this.modal.nativeElement.showModal();

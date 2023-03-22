@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { List } from 'src/app/interfaces/list';
@@ -31,6 +31,7 @@ export class ListComponent {
       name: ['', Validators.required],
     });
   }
+  @ViewChild('didCome') didCome!: ElementRef;
 
   ngOnInit() {
     this.obtainStudentByCourse();
@@ -44,12 +45,13 @@ export class ListComponent {
         present: null,
       }));
       console.log(this.listStudents);
-
-      // this.listStudents = data.map(s => ({
-      //   name: s.name,
-      //   present: null
-      // }))
     });
+  }
+  didStudentCome(did: boolean) {
+    if (did === true) {
+      this.didCome.nativeElement.classList.add('green-light');
+      console.log(did);
+    }
   }
 
   updateSubject(e: string) {
@@ -93,7 +95,12 @@ export class ListComponent {
     this._listService
       .getListByDate(this.id, this.subject, fechacodificada)
       .subscribe((data) => {
-        console.log(data);
+        this.listStudents = data.listStudents.map((student: any) => ({
+          ...student,
+          name: student.name,
+          present: student.present,
+        }));
+        console.log(this.listStudents);
       });
   }
 }

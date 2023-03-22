@@ -1,5 +1,8 @@
 <div class="w-full h-[88vh]">
-  <app-header [subject]="this.subject" (updatedSubject)="this.subject = $event"></app-header>
+  <app-header
+    [subject]="this.subject"
+    (updatedSubject)="this.subject = $event"
+  ></app-header>
   <div class="h-5/6 w-full px-10 py-5">
     <div class="flex justify-between items-center">
       <input

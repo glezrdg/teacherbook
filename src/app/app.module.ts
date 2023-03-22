@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // modules
 import { SharedModule } from './shared/shared.module';
@@ -25,7 +26,13 @@ import { HeaderComponent } from './components/header/header.component';
     SubjectComponent,
     HeaderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
