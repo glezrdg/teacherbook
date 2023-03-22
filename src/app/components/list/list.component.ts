@@ -5,6 +5,7 @@ import { List } from 'src/app/interfaces/list';
 import { ListService } from 'src/app/services/list.service';
 import { StudentService } from 'src/app/services/student.service';
 import { NgModule } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list',
@@ -23,7 +24,8 @@ export class ListComponent {
     private _studentService: StudentService,
     private _listService: ListService,
     private fb: FormBuilder,
-    private aRoute: ActivatedRoute
+    private aRoute: ActivatedRoute,
+    private _snackBar: MatSnackBar
   ) {
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
     this.subject = this.aRoute.snapshot.paramMap.get('subject')!;
@@ -75,6 +77,11 @@ export class ListComponent {
     };
     this._listService.createList(list).subscribe((data) => {
       console.log(data);
+      this._snackBar.open('List Created ', ' ', {
+        duration: 3000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'left',
+      });
     });
   }
 

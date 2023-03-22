@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GradeService } from '../../services/grade.service';
 import { Grade } from '../../interfaces/grade';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-grade',
@@ -14,8 +15,13 @@ export class GradeComponent implements OnInit {
   gradeId: number = 0;
 
   form: FormGroup;
+  loading: boolean = false;
 
-  constructor(private _gradeService: GradeService, private fb: FormBuilder) {
+  constructor(
+    private _gradeService: GradeService,
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar
+  ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
     });
@@ -38,8 +44,10 @@ export class GradeComponent implements OnInit {
   }
 
   obtainGrade() {
+    this.loading = true;
     this._gradeService.getGrades().subscribe((data) => {
       this.grades = data;
+      this.loading = false;
     });
   }
 
@@ -58,6 +66,12 @@ export class GradeComponent implements OnInit {
     this._gradeService.createGrade(grade).subscribe((data) => {
       console.log(grade);
       this.obtainGrade();
+      this.form.reset();
+      this._snackBar.open('Grade Added ', ' ', {
+        duration: 3000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'left',
+      });
     });
     this.closeModal();
   }

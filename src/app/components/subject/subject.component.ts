@@ -43,6 +43,7 @@ export class SubjectComponent implements OnInit {
   }
 
   obtainStudentByCourse() {
+    
     this._studentService.getStudentByCourse(this.id).subscribe((data) => {
       this.students = data.map((student) => ({
         ...student,

@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Grade } from 'src/app/interfaces/grade';
 import { Student } from 'src/app/interfaces/student';
@@ -23,13 +24,15 @@ export class StudentComponent implements OnInit {
   inputSearch = '';
   subject: string = '';
   inputText: any;
+  loading: boolean = false;
 
   constructor(
     private _studentService: StudentService,
     private _gradeService: GradeService,
     private aRoute: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar
   ) {
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
     console.log(this.id);
@@ -95,9 +98,11 @@ export class StudentComponent implements OnInit {
     console.log(this.id);
   }
   obtainStudentByCourse() {
+    this.loading = true;
     this._studentService.getStudentByCourse(this.id).subscribe((data) => {
       this.students = data;
       console.log(this.students);
+      this.loading = false;
     });
   }
 
@@ -116,7 +121,13 @@ export class StudentComponent implements OnInit {
     this._studentService.createStudent(student).subscribe((data) => {
       console.log(data);
       this.obtainStudentByCourse();
+      this.form.reset();
       this.closeModal();
+      this._snackBar.open('Student Added ', ' ', {
+        duration: 3000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'left',
+      });
     });
   }
 
@@ -131,7 +142,13 @@ export class StudentComponent implements OnInit {
         .subscribe((data) => {
           console.log(data);
           this.obtainStudentByCourse();
+          this.form.reset();
           this.closeModal();
+          this._snackBar.open('Student Updated ', ' ', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'left',
+          });
         });
     } else {
       this.addStudent(student);
@@ -144,9 +161,15 @@ export class StudentComponent implements OnInit {
       this.router.navigate(['/']);
     });
   }
-  removeStudent(id: number) {
+  removeStudent(e: Event, id: number) {
+    e.stopPropagation();
     this._studentService.deleteStudent(id).subscribe((data) => {
       this.obtainStudentByCourse();
+      this._snackBar.open('Student Removed ', ' ', {
+        duration: 3000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'left',
+      });
     });
   }
   // updateOneStudent() {

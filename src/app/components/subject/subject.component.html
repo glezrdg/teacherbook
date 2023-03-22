@@ -11,20 +11,25 @@
         class="w-full h-[5vh] bg-zinc-700 px-10 text-xl mt-5 flex justify-between items-center"
       >
         <span>{{ student.name }}</span>
-        <div class="bg-slate-300 flex items-center text-black">
-          <div>
-            <input
-              class="w-20 text-sm"
-              [value]="student.calification?.value"
-              (keyup)="changeCalification($event, student.calification)"
-            />
-            <span class="p-2 bg-red-200">
-              {{ calcularLiteral(student.calification?.value) }}</span
-            >
-            <button class="btn bg-blue-600" (click)="updateCalification()">
-              Update
-            </button>
-          </div>
+        <div class="w-1/4 justify-evenly flex items-center text-black">
+          <input
+            type="number"
+            class="h-5/6 w-14 px-2 py-2"
+            [value]="student.calification?.value"
+            (keyup)="changeCalification($event, student.calification)"
+            maxlength="2"
+            maxlength="number"
+          />
+          <button
+            class="btn bg-indigo-700 px-4 py-1 text-white flex items-center"
+            (click)="updateCalification()"
+          >
+            <mat-icon fontIcon="update" class="mr-3 mt-1"></mat-icon>
+            Update
+          </button>
+          <span class="px-4 py-2 font-bold text-white text-3xl">
+            {{ calcularLiteral(student.calification?.value) }}</span
+          >
         </div>
       </div>
     </div>

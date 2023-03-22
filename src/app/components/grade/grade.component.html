@@ -1,4 +1,5 @@
 <div class="w-full h-[88vh]">
+  <app-spinner *ngIf="loading"></app-spinner>
   <div class="flex h-1/6 items-center justify-between px-10">
     <h1 class="text-5xl font-semibold">ClassRooms</h1>
     <div>
@@ -17,7 +18,7 @@
   >
     <a
       *ngFor="let grade of grades"
-      class="h-[20vh] w-full bg-zinc-200 rounded-md shadow-lg flex items-center justify-center hover:scale-105 transition-all select-none"
+      class="h-[20vh] w-full bg-slate-800 text-white rounded-md shadow-2xl flex items-center justify-center hover:scale-105 transition-all select-none"
       (click)="obtainOneGrade(grade.gradeId!)"
       routerLink="grade/{{ grade.gradeId }}"
     >

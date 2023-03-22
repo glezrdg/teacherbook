@@ -4,7 +4,7 @@
     [subject]="this.subject"
   ></app-header>
   <div class="h-5/6 w-full px-10 no-scroll">
-    <div class="h-5/6 overflow-y-scroll text-white font-semibold">
+    <div class="h-4/6 overflow-y-scroll text-white font-semibold">
       <div
         *ngFor="let student of listStudents"
         class="w-full h-[5vh] bg-zinc-700 px-10 text-xl mt-5 flex justify-between items-center"
@@ -18,33 +18,40 @@
               ? { 'background-color': 'red' }
               : { 'background-color': 'gray' }
           "
-          class=""
-          >vino</span
+          class="px-4 py-2 rounded-lg shadow-sm"
+          >Vino?</span
         >
 
         <div class="flex items-center text-black">
           <div class="flex">
             <button
-              class="mr-5 bg-red-200"
+              class="mr-5 bg-lime-600 flex items-center px-4 py-2 rounded-lg shadow-lg"
               (click)="
                 changeListStudent(student.name, (student.present = true))
               "
             >
+              <mat-icon fontIcon="check_circle" class="mr-3 mt-1"></mat-icon>
               Vino
             </button>
             <button
-              class="mr-5 bg-red-200"
+              class="mr-5 bg-rose-500 flex items-center px-4 py-2 rounded-lg shadow-lg"
               (click)="
                 changeListStudent(student.name, (student.present = false))
               "
             >
+              <mat-icon fontIcon="cancel" class="mr-3 mt-1"></mat-icon>
               No Vino
             </button>
           </div>
         </div>
       </div>
-      <button (click)="addList()" class="bg-red-200 p-4">Save list</button>
-      <form action="" [formGroup]="form">
+    </div>
+    <div class="flex justify-between items-center">
+      <form
+        action=""
+        [formGroup]="form"
+        class="flex items-center justify-between w-1/4"
+      >
         <input
           type="date"
           id="start"
@@ -52,7 +59,7 @@
           value="2018-07-22"
           min="2023-01-01"
           max="2023-12-31"
-          class="w-1/2 text-black"
+          class="w-1/2 px-4 py-3 rounded-lg shadow-xl text-black"
           formControlName="name"
         />
         <button
@@ -60,10 +67,18 @@
           (click)="searchList()"
           mat-raised-button
           color="primary"
+          class=""
         >
           Search
         </button>
       </form>
+      <button
+        (click)="addList()"
+        class="mt-3 mb-4 float-right text-xl font-semibold px-4 w-1/5 py-2 bg-slate-700 text-white flex items-center justify-center hover:scale-105 transition-all hover:text-slate-700 hover:bg-white shadow-xl"
+      >
+        <mat-icon fontIcon="done" class="mr-3 mt-1"></mat-icon>
+        Save list
+      </button>
     </div>
   </div>
 </div>
