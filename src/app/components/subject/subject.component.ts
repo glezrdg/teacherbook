@@ -18,6 +18,7 @@ export class SubjectComponent implements OnInit {
   inputSearch = '';
   subject: string = '';
   id: number;
+  calificationLiteral = '';
 
   constructor(
     private _studentService: StudentService,
@@ -44,30 +45,9 @@ export class SubjectComponent implements OnInit {
           (c) => c.subject == this.subject
         ),
       }));
-
-      // this.listStudents = data.map(s => ({
-      //   name: s.name,
-      //   present: null
-      // }))
+      console.log(this.students);
     });
   }
-
-  // changeListStudent(student: string, present: boolean) {
-  //   let index = this.listStudent.findIndex(s => s._id === student)
-  //   this.listStudent[index].present = present
-  // }
-
-  // obtainCalification() {
-  //   if (this.subject) {
-  //     this._calificationService
-  //       .getCalificationById(this.subject, 1)
-  //       .subscribe((data) => {
-  //         console.log(data[0], 'no bulto');
-  //       });
-  //   } else {
-  //     return
-  //   }
-  // }
 
   searchValueChange(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
@@ -77,28 +57,7 @@ export class SubjectComponent implements OnInit {
     );
   }
 
-  // choosedStudents() {
-  //   if (this.filteredStudents.length > 0) {
-  //     return this.filteredStudents.map(student => ({
-  //       ...student,
-  //       calification: student.califications?.find(cal => cal.subject === this.subject)
-  //     }));
-  //   }
-  // }
-
-  filterCalification(student: Student): string {
-    console.log(
-      String(
-        student.califications?.find(
-          (c: Calification) => c.subject == this.subject
-        )?.value
-      )
-    );
-    return String(50);
-  }
-
   updateCalification(): void {
-    console.log(this.selectedStudent);
     if (!this.selectedStudent) return;
     try {
       this._calificationService
@@ -106,6 +65,7 @@ export class SubjectComponent implements OnInit {
         .subscribe((data) => {
           this.obtainStudentByCourse();
           console.log(data, 'brr');
+          this.calcularLiteral(this.selectedStudent.value);
         });
     } catch (error) {
       console.log(error);
@@ -122,8 +82,20 @@ export class SubjectComponent implements OnInit {
     (e.target as HTMLInputElement).focus;
   }
 
-  updateSubject(e: string) {
-    this.subject = e;
+  updateSubject(title: string) {
+    this.subject = title;
     this.obtainStudentByCourse();
+  }
+
+  calcularLiteral(calificacion: number): string {
+    if (calificacion >= 90 && calificacion <= 100) {
+      return (this.calificationLiteral = 'A');
+    } else if (calificacion >= 80 && calificacion <= 89) {
+      return (this.calificationLiteral = 'B');
+    } else if (calificacion >= 70 && calificacion <= 79) {
+      return (this.calificationLiteral = 'C');
+    } else {
+      return (this.calificationLiteral = 'F');
+    }
   }
 }
