@@ -16,7 +16,7 @@ export class SubjectComponent implements OnInit {
   filteredStudents: Student[] = [];
   selectedStudent: any = {};
   inputSearch = '';
-  subject: string = 'Lengua Española';
+  subject: string = '';
   id: number;
 
   constructor(
@@ -25,6 +25,7 @@ export class SubjectComponent implements OnInit {
     private aRoute: ActivatedRoute
   ) {
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
+    this.subject = this.aRoute.snapshot.paramMap.get('subject')!;
   }
 
   ngOnInit(): void {

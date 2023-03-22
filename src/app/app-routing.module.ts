@@ -13,7 +13,7 @@ const routes: Routes = [];
       { path: '', component: GradeComponent },
       { path: 'grade/:id', component: StudentComponent },
       { path: 'grade/:id/:subject', component: SubjectComponent },
-      { path: 'grade/:id/subject/list', component: ListComponent },
+      { path: 'grade/:id/:subject/list', component: ListComponent },
     ]),
   ],
   exports: [RouterModule],

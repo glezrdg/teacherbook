@@ -3,4 +3,66 @@
     (updatedSubject)="updateSubject($event)"
     [subject]="this.subject"
   ></app-header>
+  <div class="h-5/6 w-full px-10 no-scroll">
+    <div class="h-5/6 overflow-y-scroll text-white font-semibold">
+      <div
+        *ngFor="let student of listStudents"
+        class="w-full h-[5vh] bg-zinc-700 px-10 text-xl mt-5 flex justify-between items-center"
+      >
+        <span>{{ student.name }}</span>
+        <div class="flex items-center text-black">
+          <div class="flex">
+            <button
+              class="mr-5 bg-red-200"
+              (click)="
+                changeListStudent(student.name, (student.present = true))
+              "
+            >
+              Vino
+            </button>
+            <button
+              class="mr-5 bg-red-200"
+              (click)="
+                changeListStudent(student.name, (student.present = false))
+              "
+            >
+              No Vino
+            </button>
+          </div>
+        </div>
+      </div>
+      <button (click)="addList()" class="bg-red-200 p-4">Save list</button>
+      <form action="" [formGroup]="form">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" />
+
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <input
+          type="date"
+          id="start"
+          name="trip-start"
+          value="2018-07-22"
+          min="2023-01-01"
+          max="2023-12-31"
+          class="w-1/2 text-black"
+          formControlName="name"
+        />
+        <button
+          type="button"
+          (click)="searchList()"
+          mat-raised-button
+          color="primary"
+        >
+          Save
+        </button>
+      </form>
+    </div>
+  </div>
 </div>

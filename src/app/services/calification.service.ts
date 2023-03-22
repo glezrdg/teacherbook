@@ -20,4 +20,5 @@ export class CalificationService {
   updateCalification(id: number, value: number): Observable<any> {
     return this.http.put(`${this.myAppUrl}${this.myApiUrl}${id}`, { value });
   }
+  
 }
